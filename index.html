@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataPulse Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="logo">DataPulse Dashboard</h1>
+                <div class="header-controls">
+                    <div class="status-indicator">
+                        <span class="status-dot live"></span>
+                        <span>Live Data</span>
+                    </div>
+                    <select id="timeRange" class="time-selector">
+                        <option value="1h">Last Hour</option>
+                        <option value="24h" selected>Last 24 Hours</option>
+                        <option value="7d">Last 7 Days</option>
+                        <option value="30d">Last 30 Days</option>
+                    </select>
+                    <button id="refreshBtn" class="refresh-btn">Refresh</button>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="filters-panel">
+                <h3>Filters</h3>
+                <div class="filter-group">
+                    <label>Region:</label>
+                    <select id="regionFilter">
+                        <option value="">All Regions</option>
+                        <option value="north-america">North America</option>
+                        <option value="europe">Europe</option>
+                        <option value="asia">Asia</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Department:</label>
+                    <select id="departmentFilter">
+                        <option value="">All Departments</option>
+                        <option value="sales">Sales</option>
+                        <option value="marketing">Marketing</option>
+                        <option value="support">Support</option>
+                        <option value="engineering">Engineering</option>
+                    </select>
+                </div>
+                <button id="applyFilters" class="apply-filters-btn">Apply Filters</button>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="metric-cards">
+                    <div class="metric-card">
+                        <div class="metric-icon">📊</div>
+                        <div class="metric-content">
+                            <h3>Total Revenue</h3>
+                            <p class="metric-value" id="totalRevenue">$0</p>
+                            <span class="metric-change positive" id="revenueChange">+0%</span>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">👥</div>
+                        <div class="metric-content">
+                            <h3>Active Users</h3>
+                            <p class="metric-value" id="activeUsers">0</p>
+                            <span class="metric-change positive" id="usersChange">+0%</span>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">📈</div>
+                        <div class="metric-content">
+                            <h3>Conversion Rate</h3>
+                            <p class="metric-value" id="conversionRate">0%</p>
+                            <span class="metric-change negative" id="conversionChange">+0%</span>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">⏱️</div>
+                        <div class="metric-content">
+                            <h3>Avg Response Time</h3>
+                            <p class="metric-value" id="responseTime">0ms</p>
+                            <span class="metric-change positive" id="responseChange">+0%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>Revenue Trend</h3>
+                        <div class="chart-controls">
+                            <button class="chart-type-btn active" data-type="line">Line</button>
+                            <button class="chart-type-btn" data-type="bar">Bar</button>
+                        </div>
+                    </div>
+                    <canvas id="revenueChart"></canvas>
+                </div>
+
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>User Activity</h3>
+                    </div>
+                    <canvas id="activityChart"></canvas>
+                </div>
+
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h3>Performance Metrics</h3>
+                    </div>
+                    <canvas id="performanceChart"></canvas>
+                </div>
+
+                <div class="data-table-container">
+                    <div class="table-header">
+                        <h3>Recent Transactions</h3>
+                        <input type="text" id="searchInput" placeholder="Search transactions..." class="search-input">
+                    </div>
+                    <div class="table-wrapper">
+                        <table id="transactionsTable" class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Customer</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                    <th>Region</th>
+                                </tr>
+                            </thead>
+                            <tbody id="transactionsBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="alerts-panel">
+                    <h3>System Alerts</h3>
+                    <div id="alertsList" class="alerts-list">
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
