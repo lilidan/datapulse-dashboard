@@ -219,15 +219,20 @@ class DataPulseDashboard {
         this.charts.performance = new Chart(document.getElementById('performanceChart'), {
             type: 'doughnut',
             data: {
-                labels: ['Excellent', 'Good', 'Average', 'Poor'],
+                labels: ['Server Performance', 'API Response', 'Database', 'Network'],
                 datasets: [{
-                    data: [45, 30, 20, 5],
+                    data: [42, 28, 18, 12],
                     backgroundColor: ['#10b981', '#3b82f6', '#f59e0b', '#ef4444']
                 }]
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: false
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
             }
         });
     }
@@ -244,10 +249,10 @@ class DataPulseDashboard {
         this.charts.activity.update();
 
         const performanceData = [
-            Math.floor(Math.random() * 20) + 35,
-            Math.floor(Math.random() * 15) + 25,
-            Math.floor(Math.random() * 10) + 15,
-            Math.floor(Math.random() * 10) + 5
+            Math.floor(Math.random() * 15) + 40,
+            Math.floor(Math.random() * 12) + 22,
+            Math.floor(Math.random() * 8) + 15,
+            Math.floor(Math.random() * 6) + 8
         ];
         this.charts.performance.data.datasets[0].data = performanceData;
         this.charts.performance.update();
